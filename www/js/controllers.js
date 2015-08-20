@@ -1,6 +1,8 @@
 angular.module('starter.controllers', [])
 
-.controller('CurrentCtrl', function($scope) {})
+.controller('CurrentCtrl', function($scope, CurrentConditons) {
+  $scope.currWeather = CurrentConditons.get();
+})
 
 .controller('ForecastCtrl', function($scope, Chats) {
   // With the new view caching in Ionic, Controllers are only called
