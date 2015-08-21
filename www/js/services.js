@@ -11,9 +11,10 @@ angular.module('starter.services', ['ngResource'])
       // window.localStorage['geoLocation'] = JSON.stringify(position);
     },
     getGeolocation: function () {
+      var locn = JSON.parse(window.localStorage.getItem('geoLocation'));
       return glocation = {
-        lat: JSON.parse(window.localStorage.getItem('geoLocation.latitude')),
-        lng: JSON.parse(window.localStorage.getItem('geoLocation.longitude'))
+        lat: locn.latitude,
+        lng: locn.longitude
       }
     },
     setGeoCity: function() {

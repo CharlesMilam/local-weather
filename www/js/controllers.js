@@ -11,9 +11,8 @@ angular.module('starter.controllers', [])
     geoLocation.setGeolocation(position.coords.latitude, position.coords.longitude);
     // console.log(window.localStorage.geoLocation);
     geoLocation.setGeoCity();
-    console.log(geoLocation.getGeolocation());
-    console.log("city " + geoLocation.getGeoCity());
-    console.log(window.localStorage.getItem('city'))
+    var locn = geoLocation.getGeolocation();
+    console.log(locn)
   })
 })
 
