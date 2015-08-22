@@ -36,3 +36,6 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
   color: $card-body-text;
   text-align: center;
 }
+ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, ion-tabs.tabs-color-active-positive .tab-item.active, ion-tabs.tabs-color-active-positive .tab-item.activated {
+  color: $card-body-bg;
+}

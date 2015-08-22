@@ -7708,3 +7708,6 @@ a.button {
   background-color: #727272;
   color: #212121;
   text-align: center; }
+
+ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, ion-tabs.tabs-color-active-positive .tab-item.active, ion-tabs.tabs-color-active-positive .tab-item.activated {
+  color: #727272; }
