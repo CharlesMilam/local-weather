@@ -41,29 +41,23 @@ angular.module('starter.services', ['ngResource'])
   }
 })
 
-.factory("currConditions", function() {
+.factory("currConditions", function($resource) {
   return {
     getCurrConditions: function() {
       var neededThing = "87a3ac98e2e48918db144e9f69eeb057";
       var unitType = "imperial";
-      var city = localStorage.geoCity//getItem("geoCity");
+      var city = localStorage.geoCity;
 
       console.log("curr city " + city);
       var apiUrl = "http://api.openweathermap.org/data/2.5/weather"
-      var cityParam = city
-      var unitsParam = "&units=" + unitType;
-      var idParam = "&APPID=" + neededThing;
+      var params = {
+        q: city,
+        units: unitType,
+        APPID: neededThing
+      }
+      var conditions = $resource(apiUrl).get(params);
 
-      var conditions = $resource(apiUrl);
-      // $resource(apiUrl, function(data){
-      //   var weatherIcon = data.weather[0].id;
-      //   var city = data.name;
-      //   var temp = data.main.temp.toFixed(1);
-      //   var humidity = data.main.humidity;
-      //   var weatherDescription = data.weather[0].description;
-      //   var windDirection = translateWindDirection(data.wind.deg);
-      //   var windSpeed = data.wind.speed.toFixed(1);
-      // });
+      console.log(conditions);
     }
   }
 })
