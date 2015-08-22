@@ -4,8 +4,14 @@
       <div class="item item-divider">Current Conditions</div>
       <div class="item item-body">
         <div>
-          {{city}}
-          {{temp}}
+          {{conditions.city}}<br>
+          {{conditions.temp}}<br>
+          {{conditions.humidity}}<br>
+          {{conditions.sky}}<br>
+          <i class="owf owf-{{conditions.icon}}"></i>
+          <br>
+          {{conditions.wind.speed}}
+          {{conditions.wind.dir}}
         </div>
       </div>
     </div>

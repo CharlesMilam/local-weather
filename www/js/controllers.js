@@ -1,63 +1,50 @@
 angular.module('starter.controllers', [])
 
-.controller('CurrentCtrl', function($scope, geoLocation, $http) {
+.controller('CurrentCtrl', function($scope, GeoLocation, $http) {
   navigator.geolocation.getCurrentPosition(function(position, error) {
     if (error) {
       console.log('position error');
       console.log(err);
-      geoLocation.setGeolocation(30.330392, -97.736796)
+      GeoLocation.setGeolocation(30.330392, -97.736796)
     }
 
-    geoLocation.setGeolocation(position.coords.latitude, position.coords.longitude);
-    geoLocation.setGeoCity();
+    GeoLocation.setGeolocation(position.coords.latitude, position.coords.longitude);
+    GeoLocation.setGeoCity();
   })
 
   var neededThing = "87a3ac98e2e48918db144e9f69eeb057";
   var unitType = "imperial";
-  var city = localStorage.geoCity;
+  var city = GeoLocation.getGeoCity();
   var apiUrl = "http://api.openweathermap.org/data/2.5/weather"
   var params = {
     q: city,
     units: unitType,
     APPID: neededThing
   }
+
   var resp =  {
-    success: function(data) {
-      console.log("data", data);
-      $scope.data = data.data;
-      console.log("scope data", $scope.data.name);
-      $scope.city = $scope.data.name;
-      $scope.temp = data.data.main.temp;
+    success: function(res) {
+      console.log("data", res);
+      // $scope.data = data.data;
+      // console.log("scope data", $scope.data.name);
+      $scope.conditions = {
+        city: res.data.name,
+        temp: res.data.main.temp,
+        humidity: res.data.main.humidity,
+        sky: res.data.weather[0].description,
+        icon: res.data.weather[0].id,
+        wind: {
+          speed: res.data.wind.speed,
+          dir: res.data.wind.dir
+        }
+      }
     },
-    error: function(data) {
-      console.log("Error", data);
+    error: function(err) {
+      console.log("Error", err);
     }
   }
-  $http.get(apiUrl, {params:params})
-    .then(resp.success, resp.error);
+  $http.get(apiUrl, {params:params}).then(resp.success, resp.error);
 
-  // console.log("scope data", $scope.data);
-  // console.log($scope.data.success());
-  // WeatherConditions.getCurrTemp();
-  // console.log(WeatherConditions.getCurrTemp());
-  // $scope.conditions = WeatherConditions;
-  // $scope.conditions.$promise.then(function(conditions) {
-  //   $scope.city = conditions.name;
-  // })
-  // console.log($scope.city)
-  // console.log("GeoCity " + geoLocation.getGeoCity());
-  // $scope = WeatherConditions.currentRaw();
-  // $scope.then(function(conditions) {
-  //   $scope.city = conditions.name;
-  // })
-  // var test = WeatherConditions.currentRaw();
-  // test.then(function(conditions) {
-  //   console.log(conditions.main.temp);
-  //   $scope.city = conditions.name;
-  //   console.log($scope.city);
-  // })
-  // console.log($scope.city);
-  // WeatherConditions.getTemp();
 })
 
 .controller('ForecastCtrl', function($scope, WeatherConditions) {
