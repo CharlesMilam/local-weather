@@ -1,13 +1,16 @@
 angular.module('starter.controllers', [])
 
 .controller('CurrentCtrl', function($scope, GeoLocation, $http) {
+  // get current lat/long from device, and set position in local storage
+  // using geolocation service
   navigator.geolocation.getCurrentPosition(function(position, error) {
     if (error) {
       console.log('position error');
       console.log(err);
+      // fallback location if unable to obtain from device
       GeoLocation.setGeolocation(30.330392, -97.736796)
     }
-
+    // set the location and city
     GeoLocation.setGeolocation(position.coords.latitude, position.coords.longitude);
     GeoLocation.setGeoCity();
   })
@@ -24,9 +27,6 @@ angular.module('starter.controllers', [])
 
   var resp =  {
     success: function(res) {
-      console.log("data", res);
-      // $scope.data = data.data;
-      // console.log("scope data", $scope.data.name);
       $scope.conditions = {
         city: res.data.name,
         temp: res.data.main.temp,
