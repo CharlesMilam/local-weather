@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('CurrentCtrl', function($scope, geoLocation, currConditions) {
+.controller('CurrentCtrl', function($scope, geoLocation, WeatherConditions) {
   navigator.geolocation.getCurrentPosition(function(position, error) {
     if (error) {
       console.log('position error');
@@ -10,12 +10,10 @@ angular.module('starter.controllers', [])
 
     geoLocation.setGeolocation(position.coords.latitude, position.coords.longitude);
     geoLocation.setGeoCity();
-    geoLocation.getGeoCity();
-
-    currConditions.getCurrConditions();
-    // console.log(geoLocation.getGeolocation());
-    // console.log(geoLocation.getGeoCity());
   })
+  console.log("GeoCity " + geoLocation.getGeoCity());
+  var test = WeatherConditions.current();
+  console.log(test)
 })
 
 .controller('ForecastCtrl', function($scope, Chats) {
