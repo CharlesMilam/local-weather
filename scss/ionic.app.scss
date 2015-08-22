@@ -29,8 +29,10 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 // Custom rules
 .curr-conds-hdr {
   background-color: $card-hdr-bg;
+  text-align: center;
 }
 .curr-conds-body {
   background-color: $card-body-bg;
   color: $card-body-text;
+  text-align: center;
 }

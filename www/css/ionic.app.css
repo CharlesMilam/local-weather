@@ -7701,8 +7701,10 @@ a.button {
   transition-duration: 0s; }
 
 .curr-conds-hdr {
-  background-color: #616161; }
+  background-color: #616161;
+  text-align: center; }
 
 .curr-conds-body {
   background-color: #727272;
-  color: #212121; }
+  color: #212121;
+  text-align: center; }
