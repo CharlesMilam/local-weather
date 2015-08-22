@@ -1,24 +1,53 @@
 angular.module('starter.controllers', [])
 
-.controller('CurrentCtrl', function($scope, geoLocation, currConditions) {
+.controller('CurrentCtrl', function($scope, GeoLocation, $http) {
+  // get current lat/long from device, and set position in local storage
+  // using geolocation service
   navigator.geolocation.getCurrentPosition(function(position, error) {
     if (error) {
       console.log('position error');
       console.log(err);
-      geoLocation.setGeolocation(30.330392, -97.736796)
+      // fallback location if unable to obtain from device
+      GeoLocation.setGeolocation(30.330392, -97.736796)
     }
-
-    geoLocation.setGeolocation(position.coords.latitude, position.coords.longitude);
-    geoLocation.setGeoCity();
-    geoLocation.getGeoCity();
-
-    currConditions.getCurrConditions();
-    // console.log(geoLocation.getGeolocation());
-    // console.log(geoLocation.getGeoCity());
+    // set the location and city
+    GeoLocation.setGeolocation(position.coords.latitude, position.coords.longitude);
+    GeoLocation.setGeoCity();
   })
+
+  var neededThing = "87a3ac98e2e48918db144e9f69eeb057";
+  var unitType = "imperial";
+  var city = GeoLocation.getGeoCity();
+  var apiUrl = "http://api.openweathermap.org/data/2.5/weather"
+  var params = {
+    q: city,
+    units: unitType,
+    APPID: neededThing
+  }
+
+  var resp =  {
+    success: function(res) {
+      $scope.conditions = {
+        city: res.data.name,
+        temp: res.data.main.temp,
+        humidity: res.data.main.humidity,
+        sky: res.data.weather[0].description,
+        icon: res.data.weather[0].id,
+        wind: {
+          speed: res.data.wind.speed,
+          dir: res.data.wind.dir
+        }
+      }
+    },
+    error: function(err) {
+      console.log("Error", err);
+    }
+  }
+  $http.get(apiUrl, {params:params}).then(resp.success, resp.error);
+
 })
 
-.controller('ForecastCtrl', function($scope, Chats) {
+.controller('ForecastCtrl', function($scope, WeatherConditions) {
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
   // To listen for when this page is active (for example, to refresh data),
@@ -27,10 +56,10 @@ angular.module('starter.controllers', [])
   //$scope.$on('$ionicView.enter', function(e) {
   //});
 
-  $scope.chats = Chats.all();
-  $scope.remove = function(chat) {
-    Chats.remove(chat);
-  };
+  // $scope.chats = Chats.all();
+  // $scope.remove = function(chat) {
+  //   Chats.remove(chat);
+  // };
 })
 
 .controller('SettingsCtrl', function($scope) {
