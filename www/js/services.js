@@ -7,8 +7,7 @@ angular.module('starter.services', ['ngResource'])
         latitude: latitude,
         longitude: longitude
       }
-      window.localStorage.setItem('geoLocation', JSON.stringify(position));
-      // window.localStorage['geoLocation'] = JSON.stringify(position);
+      localStorage.setItem('geoLocation', JSON.stringify(position));
     },
     getGeolocation: function () {
       var locn = JSON.parse(window.localStorage.getItem('geoLocation'));
@@ -18,26 +17,39 @@ angular.module('starter.services', ['ngResource'])
       }
     },
     setGeoCity: function() {
-      var locn = JSON.parse(window.localStorage.getItem('geoLocation'));
+      var locn = JSON.parse(localStorage.getItem('geoLocation'));
       var latlng = new google.maps.LatLng(locn.latitude, locn.longitude);
       var geocoder = new google.maps.Geocoder();
-      window.localStorage['geoCity'] =
-        geocoder.geocode({'latLng': latlng}, function(results, status) {
-          // console.log("status " + status);
-          if (status == google.maps.GeocoderStatus.OK) {
-            if (results[1]) {
-              for (var i = 0; i < results.length; i++) {
-                if (results[i].types[0] === "locality") {
-                  window.localStorage.setItem('geoCity', JSON.stringify(results[i].address_components[0].short_name));
-                }
+      geocoder.geocode({'latLng': latlng}, function(results, status) {
+        // console.log("status " + status);
+        if (status == google.maps.GeocoderStatus.OK) {
+          if (results[1]) {
+            for (var i = 0; i < results.length; i++) {
+              if (results[i].types[0] === "locality") {
+                localStorage.setItem('geoCity', results[i].address_components[0].short_name);
               }
             }
           }
-        });
-      },
-      getGeoCity: function () {
-        return window.localStorage.getItem('city');
-      }
+        }
+      });
+    },
+    getGeoCity: function() {
+      var city = localStorage.getItem('geoCity')
+
+      return localStorage.getItem('geoCity')
+    }
+  }
+})
+
+.factory("currConditions", function() {
+  return {
+    getCurrConditions: function() {
+      var neededThing = "87a3ac98e2e48918db144e9f69eeb057";
+      var unitType = "imperial";
+      var city = localStorage.geoCity//getItem("geoCity");
+
+      console.log("curr city " + city);
+    }
   }
 })
 // .factory('CurrentConditons', function() {

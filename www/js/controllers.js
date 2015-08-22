@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('CurrentCtrl', function($scope, geoLocation) {
+.controller('CurrentCtrl', function($scope, geoLocation, currConditions) {
   navigator.geolocation.getCurrentPosition(function(position, error) {
     if (error) {
       console.log('position error');
@@ -9,10 +9,12 @@ angular.module('starter.controllers', [])
     }
 
     geoLocation.setGeolocation(position.coords.latitude, position.coords.longitude);
-    // console.log(window.localStorage.geoLocation);
     geoLocation.setGeoCity();
-    var locn = geoLocation.getGeolocation();
-    console.log(locn)
+    geoLocation.getGeoCity();
+
+    currConditions.getCurrConditions();
+    // console.log(geoLocation.getGeolocation());
+    // console.log(geoLocation.getGeoCity());
   })
 })
 
