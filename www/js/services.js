@@ -49,6 +49,21 @@ angular.module('starter.services', ['ngResource'])
       var city = localStorage.geoCity//getItem("geoCity");
 
       console.log("curr city " + city);
+      var apiUrl = "http://api.openweathermap.org/data/2.5/weather"
+      var cityParam = city
+      var unitsParam = "&units=" + unitType;
+      var idParam = "&APPID=" + neededThing;
+
+      var conditions = $resource(apiUrl);
+      // $resource(apiUrl, function(data){
+      //   var weatherIcon = data.weather[0].id;
+      //   var city = data.name;
+      //   var temp = data.main.temp.toFixed(1);
+      //   var humidity = data.main.humidity;
+      //   var weatherDescription = data.weather[0].description;
+      //   var windDirection = translateWindDirection(data.wind.deg);
+      //   var windSpeed = data.wind.speed.toFixed(1);
+      // });
     }
   }
 })
