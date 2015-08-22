@@ -41,26 +41,52 @@ angular.module('starter.services', ['ngResource'])
   }
 })
 
-.factory("WeatherConditions", function($resource) {
-  return {
-    current: function() {
-      var neededThing = "87a3ac98e2e48918db144e9f69eeb057";
-      var unitType = "imperial";
-      var city = localStorage.geoCity;
-
-      // console.log("curr city " + city);
-      var apiUrl = "http://api.openweathermap.org/data/2.5/weather"
-      var params = {
-        q: city,
-        units: unitType,
-        APPID: neededThing
-      }
-      var conditions = $resource(apiUrl).get(params);
-
-      // console.log(conditions);
-      return conditions;
+.factory("WeatherConditions", function($http) {
+  var neededThing = "87a3ac98e2e48918db144e9f69eeb057";
+  var unitType = "imperial";
+  var city = localStorage.geoCity;
+  var apiUrl = "http://api.openweathermap.org/data/2.5/weather"
+  var params = {
+    q: city,
+    units: unitType,
+    APPID: neededThing
+  }
+  var resp =  {
+    success: function(data) {
+      console.log("data", data);
+      return data;
+    },
+    error: function(data) {
+      console.log("Error", data);
     }
   }
+  $http.get(apiUrl, {params:params})
+    .then(resp.success, resp.error);
+
+  return resp;
+  // return {
+  //
+  //   // currentRaw: function() {
+  //   //   return resp;
+  //   // },
+  //   // getCurrTemp: function() {
+  //   //   console.log("get temp", resp.success());
+  //   // }
+  // }
+  // return $resource(apiUrl).get(params);
+  // var conditions = $resource(apiUrl, params)//.get(params);
+  // console.log(conditions)
+  // return {
+  //   currentRaw: function() {
+  //     return conditions.get(params).$promise;
+  //   },
+  //   getTemp: function() {
+  //
+  //     conditions.get(params).$promise.then(function(current) {
+  //       return current.main.temp;
+  //     })
+  //   }
+  // }
 })
 
 //               apiCurrentUrl = "http://api.openweathermap.org/data/2.5/weather?q=" +
