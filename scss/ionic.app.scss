@@ -15,9 +15,22 @@ $royal:                           #886aea !default;
 $dark:                            #444 !default;
 */
 
+// Custom colors
+$card-hdr-bg: #616161;
+$card-body-bg: #727272;
+$card-body-text: #212121;
+
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default;
 
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
 
+// Custom rules
+.curr-conds-hdr {
+  background-color: $card-hdr-bg;
+}
+.curr-conds-body {
+  background-color: $card-body-bg;
+  color: $card-body-text;
+}
