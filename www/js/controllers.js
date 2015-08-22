@@ -1,7 +1,21 @@
 angular.module('starter.controllers', [])
 
-.controller('CurrentCtrl', function($scope, CurrentConditons) {
-  $scope.currWeather = CurrentConditons.get();
+.controller('CurrentCtrl', function($scope, geoLocation, currConditions) {
+  navigator.geolocation.getCurrentPosition(function(position, error) {
+    if (error) {
+      console.log('position error');
+      console.log(err);
+      geoLocation.setGeolocation(30.330392, -97.736796)
+    }
+
+    geoLocation.setGeolocation(position.coords.latitude, position.coords.longitude);
+    geoLocation.setGeoCity();
+    geoLocation.getGeoCity();
+
+    currConditions.getCurrConditions();
+    // console.log(geoLocation.getGeolocation());
+    // console.log(geoLocation.getGeoCity());
+  })
 })
 
 .controller('ForecastCtrl', function($scope, Chats) {
