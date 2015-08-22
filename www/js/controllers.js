@@ -1,4 +1,4 @@
-angular.module('starter.controllers', [])
+angular.module('starter.controllers', ["ionic"])
 
 .controller('CurrentCtrl', function($scope, GeoLocation, $http) {
   // get current lat/long from device, and set position in local storage
@@ -44,6 +44,12 @@ angular.module('starter.controllers', [])
     }
   }
   $http.get(apiUrl, {params:params}).then(resp.success, resp.error);
+
+  // refresh on pull
+  $scope.doRefresh = function() {
+    $http.get(apiUrl, {params:params}).then(resp.success, resp.error);
+    $scope.$broadcast("scroll.refreshComplete");
+  }
 
 })
 
