@@ -7713,8 +7713,10 @@ a.button {
     margin: 0 0 10px 0; }
   .curr-conds-body h2 {
     margin: 0 0 10px 0; }
+  .curr-conds-body .curr-conds-icon {
+    margin-bottom: 0; }
   .curr-conds-body .curr-conds-sky {
-    margin-bottom: 16px; }
+    margin: -10px 0 16px 0; }
   .curr-conds-body .curr-conds-label {
     color: #EAEAEA; }
 

@@ -43,8 +43,11 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
   h2 {
     margin: 0 0 10px 0;
   }
+  .curr-conds-icon {
+    margin-bottom: 0;
+  }
   .curr-conds-sky {
-    margin-bottom: 16px;
+    margin: -10px 0 16px 0;
   }
   .curr-conds-label {
     color: $card-body-label;

@@ -5,25 +5,27 @@
     <div class="list card curr-conds">
       <div class="item item-divider curr-conds-hdr">
         <h1>{{conditions.city}}</h1>
-        <span class="last-refresh">{{conditions.currdate | date}}</span>
+        <span class="last-refresh">{{conditions.currdate | date:"short"}}</span>
       </div>
       <div class="item item-body curr-conds-body">
         <div>
           <p class="curr-conds-icon">
             <i class="owf owf-{{conditions.icon}} owf-5x"></i>
           </p>
-          <h2>{{conditions.sky}}</h2>
+          <p class="curr-conds-sky">
+            {{conditions.sky}}
+          </p>
           <p class="curr-conds-temp">
             <h2 class="curr-conds-label">Temperature</h2>
-            {{conditions.temp}}
+            {{conditions.temp | number:1}}&#8457;
           </p>
           <p class="curr-conds-humidity">
             <h2 class="curr-conds-label">Humidity</h2>
-            {{conditions.humidity}}
+            {{conditions.humidity}}%
           </p>
           <p class="curr-conds-wind">
             <h2 class="curr-conds-label">Wind</h2>
-            {{conditions.wind.speed}}
+            {{conditions.wind.speed | number:1}}mph
             {{conditions.wind.dir}}
           </p>
         </div>
