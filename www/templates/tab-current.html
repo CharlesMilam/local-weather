@@ -4,18 +4,30 @@
     </ion-refresher>
     <div class="list card curr-conds">
       <div class="item item-divider curr-conds-hdr">
-        <h2>Current Conditions</h2>
-        <h3>{{conditions.city}}</h3>
+        <h1>{{conditions.city}}</h1>
+        <span class="last-refresh">{{conditions.currdate | date}}</span>
       </div>
       <div class="item item-body curr-conds-body">
         <div>
-          {{conditions.temp}}<br>
-          {{conditions.humidity}}<br>
-          {{conditions.sky}}<br>
-          <i class="owf owf-{{conditions.icon}} owf-5x"></i>
-          <br>
-          {{conditions.wind.speed}}
-          {{conditions.wind.dir}}
+          <p class="curr-conds-icon">
+            <i class="owf owf-{{conditions.icon}} owf-5x"></i>
+          </p>
+          <p class="curr-conds-sky">
+            {{conditions.sky}}
+          </p>
+          <p class="curr-conds-temp">
+            <span class="curr-conds-label">Temperature</span><br>
+            {{conditions.temp}}
+          </p>
+          <p class="curr-conds-humidity">
+            <span class="curr-conds-label">Humidity</span><br>
+            {{conditions.humidity}}
+          </p>
+          <p class="curr-conds-wind">
+            <span class="curr-conds-label">Wind</span><br>
+            {{conditions.wind.speed}}
+            {{conditions.wind.dir}}
+          </p>
         </div>
       </div>
     </div>

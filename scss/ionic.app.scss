@@ -19,6 +19,7 @@ $dark:                            #444 !default;
 $card-hdr-bg: #616161;
 $card-body-bg: #727272;
 $card-body-text: #212121;
+$card-body-label: #EAEAEA;
 
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default;
@@ -35,7 +36,18 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
   background-color: $card-body-bg;
   color: $card-body-text;
   text-align: center;
+  p {
+    color: $card-body-text;
+    margin: 0;
+  }
+  .curr-conds-sky {
+    margin-bottom: 16px;
+  }
+  .curr-conds-label {
+    color: $card-body-label;
+  }
 }
+
 ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, ion-tabs.tabs-color-active-positive .tab-item.active, ion-tabs.tabs-color-active-positive .tab-item.activated {
   color: $card-body-bg;
 }

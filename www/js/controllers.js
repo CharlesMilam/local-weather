@@ -27,6 +27,7 @@ angular.module('starter.controllers', ["ionic"])
 
   var resp =  {
     success: function(res) {
+      console.log("resp", res);
       $scope.conditions = {
         city: res.data.name,
         temp: res.data.main.temp,
@@ -36,7 +37,8 @@ angular.module('starter.controllers', ["ionic"])
         wind: {
           speed: res.data.wind.speed,
           dir: res.data.wind.dir
-        }
+        },
+        currdate: res.data.dt
       }
     },
     error: function(err) {

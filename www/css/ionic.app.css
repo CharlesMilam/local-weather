@@ -7708,6 +7708,13 @@ a.button {
   background-color: #727272;
   color: #212121;
   text-align: center; }
+  .curr-conds-body p {
+    color: #212121;
+    margin: 0; }
+  .curr-conds-body .curr-conds-sky {
+    margin-bottom: 16px; }
+  .curr-conds-body .curr-conds-label {
+    color: #EAEAEA; }
 
 ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, ion-tabs.tabs-color-active-positive .tab-item.active, ion-tabs.tabs-color-active-positive .tab-item.activated {
   color: #727272; }
