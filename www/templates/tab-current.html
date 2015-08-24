@@ -1,17 +1,33 @@
 <ion-view view-title="Current Conditions">
   <ion-content class="padding">
-    <div class="list card">
-      <div class="item item-divider">Current Conditions</div>
-      <div class="item item-body">
+    <ion-refresher pulling-text="Pull to refresh" on-refresh="doRefresh()">
+    </ion-refresher>
+    <div class="list card curr-conds">
+      <div class="item item-divider curr-conds-hdr">
+        <h1>{{conditions.city}}</h1>
+        <span class="last-refresh">{{conditions.currdate | date:"short"}}</span>
+      </div>
+      <div class="item item-body curr-conds-body">
         <div>
-          {{conditions.city}}<br>
-          {{conditions.temp}}<br>
-          {{conditions.humidity}}<br>
-          {{conditions.sky}}<br>
-          <i class="owf owf-{{conditions.icon}} owf-5x"></i>
-          <br>
-          {{conditions.wind.speed}}
-          {{conditions.wind.dir}}
+          <p class="curr-conds-icon">
+            <i class="owf owf-{{conditions.icon}} owf-5x"></i>
+          </p>
+          <p class="curr-conds-sky">
+            {{conditions.sky}}
+          </p>
+          <p class="curr-conds-temp">
+            <h2 class="curr-conds-label">Temperature</h2>
+            {{conditions.temp | number:1}}&#8457;
+          </p>
+          <p class="curr-conds-humidity">
+            <h2 class="curr-conds-label">Humidity</h2>
+            {{conditions.humidity}}%
+          </p>
+          <p class="curr-conds-wind">
+            <h2 class="curr-conds-label">Wind</h2>
+            {{conditions.wind.speed | number:1}}mph
+            {{conditions.wind.dir}}
+          </p>
         </div>
       </div>
     </div>

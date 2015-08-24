@@ -15,9 +15,45 @@ $royal:                           #886aea !default;
 $dark:                            #444 !default;
 */
 
+// Custom colors
+$card-hdr-bg: #616161;
+$card-body-bg: #727272;
+$card-body-text: #212121;
+$card-body-label: #EAEAEA;
+
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default;
 
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
 
+// Custom rules
+.curr-conds-hdr {
+  background-color: $card-hdr-bg;
+  text-align: center;
+}
+.curr-conds-body {
+  background-color: $card-body-bg;
+  color: $card-body-text;
+  text-align: center;
+  p {
+    color: $card-body-text;
+    margin: 0 0 10px 0;
+  }
+  h2 {
+    margin: 0 0 10px 0;
+  }
+  .curr-conds-icon {
+    margin-bottom: 0;
+  }
+  .curr-conds-sky {
+    margin: -10px 0 16px 0;
+  }
+  .curr-conds-label {
+    color: $card-body-label;
+  }
+}
+
+ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, ion-tabs.tabs-color-active-positive .tab-item.active, ion-tabs.tabs-color-active-positive .tab-item.activated {
+  color: $card-body-bg;
+}
