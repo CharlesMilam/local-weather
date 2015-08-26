@@ -51,19 +51,11 @@ angular.module('starter.services', ['ngResource'])
     units: unitType,
     APPID: neededThing
   }
-  var resp =  {
-    success: function(data) {
-      console.log("data", data);
-      return data;
-    },
-    error: function(data) {
-      console.log("Error", data);
-    }
-  }
-  return $http.get(apiUrl, {params:params})
-    .resp.success;
+  console.log("in weather factory");
 
-  // return resp;
+  return function() {
+    return $http.get(apiUrl, {params:params});
+  }
 })
 
 //               apiCurrentUrl = "http://api.openweathermap.org/data/2.5/weather?q=" +

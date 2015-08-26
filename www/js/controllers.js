@@ -1,6 +1,6 @@
 angular.module('starter.controllers', ["ionic"])
 
-.controller('CurrentCtrl', function($scope, GeoLocation, $http) {
+.controller('CurrentCtrl', function($scope, GeoLocation, WeatherConditions) {
   // get current lat/long from device, and set position in local storage
   // using geolocation service
   navigator.geolocation.getCurrentPosition(function(position, error) {
@@ -15,9 +15,35 @@ angular.module('starter.controllers', ["ionic"])
     GeoLocation.setGeoCity();
   })
 
-  $scope.weatherConditions = function() {
-    return WeatherCondions();
+  $scope.weatherConditions;
+  getConditions();
+
+  function getConditions() {
+    WeatherConditions()
+    .success(function(data) {
+      console.log("data", data);
+      $scope.conditions = {
+        city: data.name,
+        temp: data.main.temp,
+        humidity: data.main.humidity,
+        sky: data.weather[0].description,
+        icon: data.weather[0].id,
+        wind: {
+          speed: data.wind.speed,
+          dir: data.wind.dir
+        },
+        currdate: data.dt
+      };
+    })
+    .error(function(data) {
+      console.log("Error", data);
+    })
   }
+  // $scope.weatherConditions = function() {
+  //   return WeatherCondions();
+  // }
+  // console.log(weatherConditions.name);
+  // console.log($scope.weatherConditions());
   // var neededThing = "87a3ac98e2e48918db144e9f69eeb057";
   // var unitType = "imperial";
   // var city = GeoLocation.getGeoCity();
@@ -51,10 +77,10 @@ angular.module('starter.controllers', ["ionic"])
   // $http.get(apiUrl, {params:params}).then(resp.success, resp.error);
 
   // refresh on pull
-  $scope.doRefresh = function() {
-    $http.get(apiUrl, {params:params}).then(resp.success, resp.error);
-    $scope.$broadcast("scroll.refreshComplete");
-  }
+  // $scope.doRefresh = function() {
+  //   $http.get(apiUrl, {params:params}).then(resp.success, resp.error);
+  //   $scope.$broadcast("scroll.refreshComplete");
+  // }
 
 })
 
