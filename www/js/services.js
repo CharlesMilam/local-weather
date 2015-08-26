@@ -41,7 +41,7 @@ angular.module('starter.services', ['ngResource'])
   }
 })
 
-.factory("WeatherConditions", function($http) {
+.factory("WeatherConditions", function WeatherConditionsFactory($http) {
   var neededThing = "87a3ac98e2e48918db144e9f69eeb057";
   var unitType = "imperial";
   var city = localStorage.geoCity;
@@ -60,10 +60,10 @@ angular.module('starter.services', ['ngResource'])
       console.log("Error", data);
     }
   }
-  $http.get(apiUrl, {params:params})
-    .then(resp.success, resp.error);
+  return $http.get(apiUrl, {params:params})
+    .resp.success;
 
-  return resp;
+  // return resp;
 })
 
 //               apiCurrentUrl = "http://api.openweathermap.org/data/2.5/weather?q=" +
