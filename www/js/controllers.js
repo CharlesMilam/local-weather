@@ -36,51 +36,15 @@ angular.module('starter.controllers', ["ionic"])
       };
     })
     .error(function(data) {
-      console.log("Error", data);
+      console.log("ERROR", data);
     })
   }
-  // $scope.weatherConditions = function() {
-  //   return WeatherCondions();
-  // }
-  // console.log(weatherConditions.name);
-  // console.log($scope.weatherConditions());
-  // var neededThing = "87a3ac98e2e48918db144e9f69eeb057";
-  // var unitType = "imperial";
-  // var city = GeoLocation.getGeoCity();
-  // var apiUrl = "http://api.openweathermap.org/data/2.5/weather"
-  // var params = {
-  //   q: city,
-  //   units: unitType,
-  //   APPID: neededThing
-  // }
-  //
-  // var resp =  {
-  //   success: function(res) {
-  //     console.log("resp", res);
-  //     $scope.conditions = {
-  //       city: res.data.name,
-  //       temp: res.data.main.temp,
-  //       humidity: res.data.main.humidity,
-  //       sky: res.data.weather[0].description,
-  //       icon: res.data.weather[0].id,
-  //       wind: {
-  //         speed: res.data.wind.speed,
-  //         dir: res.data.wind.dir
-  //       },
-  //       currdate: res.data.dt
-  //     }
-  //   },
-  //   error: function(err) {
-  //     console.log("Error", err);
-  //   }
-  // }
-  // $http.get(apiUrl, {params:params}).then(resp.success, resp.error);
 
   // refresh on pull
-  // $scope.doRefresh = function() {
-  //   $http.get(apiUrl, {params:params}).then(resp.success, resp.error);
-  //   $scope.$broadcast("scroll.refreshComplete");
-  // }
+  $scope.doRefresh = function() {
+    getConditions();
+    $scope.$broadcast("scroll.refreshComplete");
+  }
 
 })
 

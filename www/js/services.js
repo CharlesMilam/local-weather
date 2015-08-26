@@ -51,8 +51,7 @@ angular.module('starter.services', ['ngResource'])
     units: unitType,
     APPID: neededThing
   }
-  console.log("in weather factory");
-
+  
   return function() {
     return $http.get(apiUrl, {params:params});
   }
