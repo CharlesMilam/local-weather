@@ -1,6 +1,6 @@
 angular.module('starter.controllers', ["ionic"])
 
-.controller('CurrentCtrl', function($scope, GeoLocation, $http) {
+.controller('CurrentCtrl', function($scope, GeoLocation, WeatherConditions) {
   // get current lat/long from device, and set position in local storage
   // using geolocation service
   navigator.geolocation.getCurrentPosition(function(position, error) {
@@ -15,41 +15,34 @@ angular.module('starter.controllers', ["ionic"])
     GeoLocation.setGeoCity();
   })
 
-  var neededThing = "87a3ac98e2e48918db144e9f69eeb057";
-  var unitType = "imperial";
-  var city = GeoLocation.getGeoCity();
-  var apiUrl = "http://api.openweathermap.org/data/2.5/weather"
-  var params = {
-    q: city,
-    units: unitType,
-    APPID: neededThing
-  }
+  $scope.weatherConditions;
+  getConditions();
 
-  var resp =  {
-    success: function(res) {
-      console.log("resp", res);
+  function getConditions() {
+    WeatherConditions()
+    .success(function(data) {
+      console.log("data", data);
       $scope.conditions = {
-        city: res.data.name,
-        temp: res.data.main.temp,
-        humidity: res.data.main.humidity,
-        sky: res.data.weather[0].description,
-        icon: res.data.weather[0].id,
+        city: data.name,
+        temp: data.main.temp,
+        humidity: data.main.humidity,
+        sky: data.weather[0].description,
+        icon: data.weather[0].id,
         wind: {
-          speed: res.data.wind.speed,
-          dir: res.data.wind.dir
+          speed: data.wind.speed,
+          dir: data.wind.dir
         },
-        currdate: res.data.dt
-      }
-    },
-    error: function(err) {
-      console.log("Error", err);
-    }
+        currdate: data.dt
+      };
+    })
+    .error(function(data) {
+      console.log("ERROR", data);
+    })
   }
-  $http.get(apiUrl, {params:params}).then(resp.success, resp.error);
 
   // refresh on pull
   $scope.doRefresh = function() {
-    $http.get(apiUrl, {params:params}).then(resp.success, resp.error);
+    getConditions();
     $scope.$broadcast("scroll.refreshComplete");
   }
 
