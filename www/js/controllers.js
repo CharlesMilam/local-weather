@@ -15,7 +15,7 @@ angular.module('starter.controllers', ["ionic"])
     GeoLocation.setGeoCity();
   })
 
-  $scope.weatherConditions;
+  // retrieves current weather conditions form WeatherConditions factory
   getConditions();
 
   function getConditions() {
