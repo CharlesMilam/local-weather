@@ -1,4 +1,4 @@
-angular.module('starter.services', ['ngResource'])
+angular.module('LocalWeather.services', ['ngResource'])
 
 // GeoLocation factory
 .factory('GeoLocation', function () {

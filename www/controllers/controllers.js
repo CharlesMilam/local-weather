@@ -1,4 +1,4 @@
-angular.module('starter.controllers', ["ionic"])
+angular.module('LocalWeather.controllers', ["ionic"])
 
 .controller('CurrentCtrl', function($scope, GeoLocation, WeatherConditions) {
   // get current lat/long from device, and set position in local storage
