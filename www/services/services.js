@@ -1,7 +1,7 @@
 angular.module('LocalWeather.services', ['ngResource'])
 
 // GeoLocation factory
-.factory('GeoLocation', function () {
+.factory('GeoLocation', function GeoLocationFactory() {
   return {
     setGeolocation: function (latitude, longitude) {
       var position = {
