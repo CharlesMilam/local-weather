@@ -1,5 +1,6 @@
 angular.module('starter.services', ['ngResource'])
 
+// GeoLocation factory
 .factory('GeoLocation', function () {
   return {
     setGeolocation: function (latitude, longitude) {
@@ -40,7 +41,9 @@ angular.module('starter.services', ['ngResource'])
     }
   }
 })
+// end GeoLocation factory
 
+// Current Weather conditions factory
 .factory("WeatherConditions", function WeatherConditionsFactory($http) {
   var neededThing = "87a3ac98e2e48918db144e9f69eeb057";
   var unitType = "imperial";
@@ -51,7 +54,7 @@ angular.module('starter.services', ['ngResource'])
     units: unitType,
     APPID: neededThing
   }
-  
+
   return function() {
     return $http.get(apiUrl, {params:params});
   }

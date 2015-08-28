@@ -15,13 +15,14 @@ angular.module('starter.controllers', ["ionic"])
     GeoLocation.setGeoCity();
   })
 
-  $scope.weatherConditions;
+  // retrieves current weather conditions form WeatherConditions factory
   getConditions();
 
   function getConditions() {
     WeatherConditions()
-    .success(function(data) {
-      console.log("data", data);
+    .then(function success(resp) {
+      console.log("data", resp.data);
+      var data = resp.data;
       $scope.conditions = {
         city: data.name,
         temp: data.main.temp,
@@ -30,14 +31,14 @@ angular.module('starter.controllers', ["ionic"])
         icon: data.weather[0].id,
         wind: {
           speed: data.wind.speed,
-          dir: data.wind.dir
+          dir: data.wind.deg
         },
         currdate: data.dt
       };
-    })
-    .error(function(data) {
+    }),
+    function error(data) {
       console.log("ERROR", data);
-    })
+    };
   }
 
   // refresh on pull
