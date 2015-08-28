@@ -20,8 +20,9 @@ angular.module('starter.controllers', ["ionic"])
 
   function getConditions() {
     WeatherConditions()
-    .success(function(data) {
-      console.log("data", data);
+    .then(function success(resp) {
+      console.log("data", resp.data);
+      var data = resp.data;
       $scope.conditions = {
         city: data.name,
         temp: data.main.temp,
@@ -34,10 +35,10 @@ angular.module('starter.controllers', ["ionic"])
         },
         currdate: data.dt
       };
-    })
-    .error(function(data) {
+    }),
+    function error(data) {
       console.log("ERROR", data);
-    })
+    };
   }
 
   // refresh on pull
