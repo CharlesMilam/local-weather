@@ -31,7 +31,7 @@ angular.module('starter.controllers', ["ionic"])
         icon: data.weather[0].id,
         wind: {
           speed: data.wind.speed,
-          dir: data.wind.dir
+          dir: data.wind.deg
         },
         currdate: data.dt
       };
