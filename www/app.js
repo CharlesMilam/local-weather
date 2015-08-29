@@ -14,7 +14,7 @@ angular.module('LocalWeather', [
       "ionic"
     ])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, ChangeUnits) {
   console.log("in app run");
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -29,6 +29,9 @@ angular.module('LocalWeather', [
       StatusBar.styleLightContent();
     }
   });
+  if (!ChangeUnits.getUnitType()) {
+    ChangeUnits.setUnitType();
+  };
 })
 
 .config(function($stateProvider, $urlRouterProvider) {

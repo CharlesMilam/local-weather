@@ -1,8 +1,8 @@
 angular.module("LocalWeather.weather-current")
-.factory("WeatherConditions", ["$http", function WeatherConditionsFactory($http) {
+.factory("WeatherConditions", ["$http", "ChangeUnits", function WeatherConditionsFactory($http, ChangeUnits) {
   console.log("in weather conditions factory");
   var neededThing = "87a3ac98e2e48918db144e9f69eeb057";
-  var unitType = "imperial";
+  var unitType = ChangeUnits.getUnitType();
   var city = localStorage.geoCity;
   var apiUrl = "http://api.openweathermap.org/data/2.5/weather"
   var params = {
