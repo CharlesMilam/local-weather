@@ -3,5 +3,8 @@ angular.module("LocalWeather.weather-settings")
   $scope.settings = {
     enableMetric: "imperial"
   };
-  ChangeUnits.setUnitType($scope.settings.enableMetric);
+  $scope.toggleChange = function() {
+    ChangeUnits.setUnitType($scope.settings.enableMetric);
+  }
+
 });
