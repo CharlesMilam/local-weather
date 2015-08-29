@@ -1,9 +1,12 @@
 <ion-view view-title="Settings">
   <ion-content>
     <ion-list>
-    <ion-toggle  ng-model="settings.enableFriends">
+    <ion-toggle  ng-model="settings.enableMetric" ng-true-value="'metric'" ng-false-value="'imperial'" toggle-class="toggle-dark">
         Change Units to Metric
     </ion-toggle>
     </ion-list>
+    <p>
+      {{settings.enableMetric}}
+    </p>
   </ion-content>
 </ion-view>

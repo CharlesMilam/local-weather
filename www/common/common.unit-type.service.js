@@ -4,15 +4,8 @@ angular.module("LocalWeather.common")
     getUnitType: function() {
       return localStorage.getItem("weatherUnitType")
     },
-    setUnitType: function() {
-      if (localStorage.getItem("weatherUnitType")) {
-        localStorage.getItem("weatherUnitType") === "imperial"
-        ? localStorage.setItem("weatherUnitType", "metric")
-        : localStorage.setItem("weatherUnitType", "imperial");
-      }
-      else {
-        localStorage.setItem("weatherUnitType", "imperial")
-      }
+    setUnitType: function(unitType) {
+      localStorage.setItem("weatherUnitType", unitType)
     }
   }
 })

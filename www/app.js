@@ -30,7 +30,7 @@ angular.module('LocalWeather', [
     }
   });
   if (!ChangeUnits.getUnitType()) {
-    ChangeUnits.setUnitType();
+    ChangeUnits.setUnitType("imperial");
   };
 })
 
