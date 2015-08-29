@@ -1,6 +1,7 @@
-angular.module('starter.controllers', ["ionic"])
+angular.module('LocalWeather', ["ionic"])
 
 .controller('CurrentCtrl', function($scope, GeoLocation, WeatherConditions) {
+  console.log("in current ctrl");
   // get current lat/long from device, and set position in local storage
   // using geolocation service
   navigator.geolocation.getCurrentPosition(function(position, error) {
@@ -11,7 +12,8 @@ angular.module('starter.controllers', ["ionic"])
       GeoLocation.setGeolocation(30.330392, -97.736796)
     }
     // set the location and city
-    GeoLocation.setGeolocation(position.coords.latitude, position.coords.longitude);
+    GeoLocation
+    .setGeolocation(position.coords.latitude, position.coords.longitude);
     GeoLocation.setGeoCity();
   })
 
