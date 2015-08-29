@@ -1,5 +1,5 @@
 angular.module("LocalWeather.weather-current")
-.factory("WeatherConditions", ["$http", "GeoLocation", function WeatherConditionsFactory($http, GeoLocation) {
+.factory("WeatherConditions", ["$http", function WeatherConditionsFactory($http) {
   console.log("in weather conditions factory");
   var neededThing = "87a3ac98e2e48918db144e9f69eeb057";
   var unitType = "imperial";
