@@ -15,5 +15,5 @@ angular.module("LocalWeather.weather-current", ["ionic"])
           controller: 'CurrentCtrl'
         }
       }
-    })
+    });
 });

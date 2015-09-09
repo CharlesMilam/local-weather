@@ -1,6 +1,10 @@
 angular.module("LocalWeather.weather-settings")
-.controller('SettingsCtrl', function($scope) {
+.controller('SettingsCtrl', function($scope, ChangeUnits) {
   $scope.settings = {
-    enableFriends: true
+    enableMetric: "imperial"
   };
+  $scope.toggleChange = function() {
+    ChangeUnits.setUnitType($scope.settings.enableMetric);
+  }
+
 });
