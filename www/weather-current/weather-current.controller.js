@@ -8,15 +8,15 @@ angular.module('LocalWeather.weather-current')
       console.log('position error');
       console.log(err);
       // fallback location if unable to obtain from device
-      GeoLocation.setGeolocation(30.330392, -97.736796)
+      GeoLocation.setGeolocation(30.330392, -97.736796);
     }
     // set the location and city
     GeoLocation
     .setGeolocation(position.coords.latitude, position.coords.longitude);
     GeoLocation.setGeoCity();
-  })
+  });
 
-  // retrieves current weather conditions form WeatherConditions factory
+  // retrieves current weather conditions from WeatherConditions factory
   getConditions();
 
   function getConditions() {
@@ -39,13 +39,13 @@ angular.module('LocalWeather.weather-current')
     }),
     function error(data) {
       console.log("ERROR", data);
-    };
+    }
   }
 
   // refresh on pull
   $scope.doRefresh = function() {
     getConditions();
     $scope.$broadcast("scroll.refreshComplete");
-  }
+  };
 
-}])
+}]);

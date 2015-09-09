@@ -4,14 +4,14 @@ angular.module("LocalWeather.weather-current")
   var neededThing = "87a3ac98e2e48918db144e9f69eeb057";
   var unitType = ChangeUnits.getUnitType();
   var city = localStorage.geoCity;
-  var apiUrl = "http://api.openweathermap.org/data/2.5/weather"
+  var apiUrl = "http://api.openweathermap.org/data/2.5/weather";
   var params = {
     q: city,
     units: unitType,
     APPID: neededThing
-  }
+  };
 
   return function() {
     return $http.get(apiUrl, {params:params});
-  }
-}])
+  };
+}]);
