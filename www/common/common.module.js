@@ -12,6 +12,6 @@ angular.module("LocalWeather.common", ["ionic"])
     url: '/tab',
     abstract: true,
     templateUrl: 'common/tabs.html'
-  })
+  });
 
 });
