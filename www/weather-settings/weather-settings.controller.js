@@ -5,10 +5,11 @@ angular.module("LocalWeather.weather-settings")
   };
   $scope.toggleChange = function() {
     ChangeUnits.setIsMetric($scope.settings.enableMetric);
-    $scope.metricNotificationChange = function() {
+    $scope.pushNotificationChange = function() {
      console.log('metric changed', $scope.settings.enableMetric.checked);
-     $scope.getCurrent();
+
     };
+    $scope.getConditions;
   };
 
 
