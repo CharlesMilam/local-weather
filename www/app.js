@@ -29,59 +29,16 @@ angular.module('LocalWeather', [
       StatusBar.styleLightContent();
     }
   });
+  // set unit type of metric to false by default, if it doesn't exist
   if (!ChangeUnits.getUnitType()) {
-    ChangeUnits.setUnitType("imperial");
-  };
+    ChangeUnits.setUnitType(false);
+  }
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
   console.log("in app config");
-  // Ionic uses AngularUI Router which uses the concept of states
-  // Learn more here: https://github.com/angular-ui/ui-router
-  // Set up the various states which the app can be in.
-  // Each state's controller can be found in controllers.js
-  // $stateProvider
 
-  // // setup an abstract state for the tabs directive
-  // .state('tab', {
-  //   url: '/tab',
-  //   abstract: true,
-  //   templateUrl: 'common/tabs.html'
-  // })
-
-  // Each tab has its own nav history stack:
-
-  // .state('tab.current', {
-  //   url: '/current',
-  //   views: {
-  //     'tab-current': {
-  //       templateUrl: 'weather-current/tab-current.html',
-  //       controller: 'CurrentCtrl'
-  //     }
-  //   }
-  // })
-
-  // .state('tab.forecast', {
-  //     url: '/forecast',
-  //     views: {
-  //       'tab-forecast': {
-  //         templateUrl: 'weather-forecast/tab-forecast.html',
-  //         controller: 'ForecastCtrl'
-  //       }
-  //     }
-  //   })
-  //
-  // .state('tab.settings', {
-  //   url: '/settings',
-  //   views: {
-  //     'tab-settings': {
-  //       templateUrl: 'weather-settings/tab-settings.html',
-  //       controller: 'SettingsCtrl'
-  //     }
-  //   }
-  // });
-
-  // if none of the above states are matched, use this as the fallback
+  // if no states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/current');
 
 });
