@@ -34,7 +34,7 @@ angular.module('LocalWeather.weather-current')
           speed: data.wind.speed,
           dir: data.wind.deg
         },
-        currdate: data.dt
+        currdate: new Date(data.dt)
       };
     }),
     function error(data) {
