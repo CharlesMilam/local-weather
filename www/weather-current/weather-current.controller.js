@@ -1,5 +1,5 @@
 angular.module('LocalWeather.weather-current')
-.controller('CurrentCtrl', ["$scope", "GeoLocation", "WeatherConditions", function($scope, GeoLocation, WeatherConditions) {
+.controller('CurrentCtrl', ["$scope", "GeoLocation", "WeatherConditions", 'ChangeUnits', function($scope, GeoLocation, WeatherConditions, ChangeUnits) {
   console.log("in current ctrl");
   // get current lat/long from device, and set position in local storage
   // using geolocation service
@@ -17,7 +17,7 @@ angular.module('LocalWeather.weather-current')
   });
 
   // retrieves current weather conditions from WeatherConditions factory
-  getConditions();
+  $scope.getCurrent = getConditions();
 
   function getConditions() {
     WeatherConditions()
@@ -41,6 +41,12 @@ angular.module('LocalWeather.weather-current')
       console.log("ERROR", data);
     }
   }
+
+  $scope.$watch('metricNotification.checked', function() {
+    console.log('Metric Notification Change: ' +
+    ChangeUnits.getIsMetric());
+    console.log('in curr ctrl', ChangeUnits.getIsMetric());
+  });
 
   // refresh on pull
   $scope.doRefresh = function() {
