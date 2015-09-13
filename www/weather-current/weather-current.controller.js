@@ -1,5 +1,5 @@
 angular.module('LocalWeather.weather-current')
-.controller('CurrentCtrl', ["$scope", "GeoLocation", "WeatherConditions", 'ChangeUnits', function($scope, GeoLocation, WeatherConditions, ChangeUnits) {
+.controller('CurrentCtrl', ["$scope", '$localStorage', "GeoLocation", "WeatherConditions", 'ChangeUnits',  function($scope, $localStorage, GeoLocation, WeatherConditions, ChangeUnits) {
   console.log("in current ctrl");
   // get current lat/long from device, and set position in local storage
   // using geolocation service
@@ -34,24 +34,28 @@ angular.module('LocalWeather.weather-current')
           speed: data.wind.speed,
           dir: data.wind.deg
         },
-        currdate: new Date(data.dt)
+        currdate: new Date(data.dt),
+        units: ChangeUnits.getIsMetric()
       };
     }),
     function error(data) {
       return console.log("ERROR", data);
     }
   }
-
-  $scope.$watch('metricNotificationChange', function() {
-    console.log('Metric Notification Change: ' +
-    ChangeUnits.getIsMetric());
-
-  });
+  $scope.data = {};
+  $scope.data.units = function() {
+    return $localStorage.weatherUnitMetric;
+  };
+  // console.log('unitMetric', $scope.data.units());
+  // $scope.$watch('data.units', function(newValue, oldValue) {
+  //   console.log('weatherUnitMetric changed');
+  // });
 
   // refresh on pull
   $scope.doRefresh = function() {
     getConditions();
     $scope.$broadcast("scroll.refreshComplete");
   };
+
 
 }]);

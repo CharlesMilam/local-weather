@@ -11,7 +11,8 @@ angular.module('LocalWeather', [
       "LocalWeather.weather-forecast",
       "LocalWeather.weather-settings",
       "LocalWeather.common",
-      "ionic"
+      "ionic",
+      "ngStorage"
     ])
 
 .run(function($ionicPlatform, ChangeUnits) {
@@ -30,9 +31,9 @@ angular.module('LocalWeather', [
     }
   });
   // set unit type of metric to false by default, if it doesn't exist
-  // if (!ChangeUnits.getIsMetric()) {
-  //   ChangeUnits.setIsMetrice(false);
-  // }
+  if (!ChangeUnits.getIsMetric()) {
+    ChangeUnits.setIsMetric(false);
+  }
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
