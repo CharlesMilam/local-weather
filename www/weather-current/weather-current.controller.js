@@ -17,7 +17,7 @@ angular.module('LocalWeather.weather-current')
   });
 
   // retrieves current weather conditions from WeatherConditions factory
-  $scope.getCurrent = getConditions();
+  getConditions();
 
   function getConditions() {
     WeatherConditions()
@@ -38,14 +38,14 @@ angular.module('LocalWeather.weather-current')
       };
     }),
     function error(data) {
-      console.log("ERROR", data);
+      return console.log("ERROR", data);
     }
   }
 
-  $scope.$watch('metricNotification.checked', function() {
+  $scope.$watch('metricNotificationChange', function() {
     console.log('Metric Notification Change: ' +
     ChangeUnits.getIsMetric());
-    console.log('in curr ctrl', ChangeUnits.getIsMetric());
+
   });
 
   // refresh on pull
