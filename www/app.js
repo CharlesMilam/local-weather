@@ -31,9 +31,9 @@ angular.module('LocalWeather', [
     }
   });
   // set unit type of metric to false by default, if it doesn't exist
-  if (!ChangeUnits.getIsMetric()) {
-    ChangeUnits.setIsMetric(false);
-  }
+  // if (!ChangeUnits.getIsMetric()) {
+  //   ChangeUnits.setIsMetric(false);
+  // }
 })
 
 .config(function($stateProvider, $urlRouterProvider) {

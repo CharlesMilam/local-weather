@@ -3,7 +3,7 @@ angular.module("LocalWeather.weather-current")
   console.log("in weather conditions factory");
   var neededThing = "87a3ac98e2e48918db144e9f69eeb057";
   var metric = ChangeUnits.getIsMetric();
-  var unitType = metric === 'true' ? 'metric' : 'imperial';
+  var unitType = $localStorage.weatherUnitMetric ? 'metric' : 'imperial';
   var city = $localStorage.geoCity;
   var apiUrl = "http://api.openweathermap.org/data/2.5/weather";
   var params = {

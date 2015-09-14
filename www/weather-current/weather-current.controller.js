@@ -23,6 +23,7 @@ angular.module('LocalWeather.weather-current')
     WeatherConditions()
     .then(function success(resp) {
       console.log("data", resp.data);
+      console.log('cond cu', ChangeUnits.getIsMetric());
       var data = resp.data;
       $scope.conditions = {
         city: data.name,
@@ -34,8 +35,8 @@ angular.module('LocalWeather.weather-current')
           speed: data.wind.speed,
           dir: data.wind.deg
         },
-        currdate: new Date(data.dt),
-        units: ChangeUnits.getIsMetric()
+        currdate: new Date(data.dt).toDateString(),
+        metricstate: ChangeUnits.getIsMetric()
       };
     }),
     function error(data) {
@@ -43,13 +44,15 @@ angular.module('LocalWeather.weather-current')
     }
   }
   $scope.data = {};
-  $scope.data.units = function() {
-    return $localStorage.weatherUnitMetric;
-  };
-  // console.log('unitMetric', $scope.data.units());
-  // $scope.$watch('data.units', function(newValue, oldValue) {
-  //   console.log('weatherUnitMetric changed');
+  $scope.data.units = $localStorage.weatherUnitMetric;
+  // $scope.data.units.on('change', function() {
+  //   getConditions();
   // });
+  // console.log('weather units', $scope.data.units);
+  // console.log('unitMetric', $scope.data.units());
+  $scope.$watch('data.units', function(newValue, oldValue) {
+    console.log('weatherUnitMetric changed');
+  });
 
   // refresh on pull
   $scope.doRefresh = function() {
