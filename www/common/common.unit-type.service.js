@@ -1,11 +1,11 @@
 angular.module("LocalWeather.common")
-.factory("ChangeUnits", function ChangeUnitsFactory(){
+.factory("ChangeUnits", ["$localStorage", function ChangeUnitsFactory($localStorage){
   return {
     getIsMetric: function() {
-      return localStorage.getItem("weatherUnitMetric");
+      return $localStorage.weatherUnitMetric;
     },
     setIsMetric: function(metric) {
-      localStorage.setItem("weatherUnitMetric", metric);
+      $localStorage.weatherUnitMetric = metric;
     }
   };
-});
+}]);
